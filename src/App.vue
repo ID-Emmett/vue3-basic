@@ -18,16 +18,7 @@
           {{ emailRef.message }}
         </div>
       </div> -->
-      <!-- 密码验证组件 -->
-      <div class="mb-3">
-        <label class="form-label">密码</label>
-        <ValidateInput
-          :rules="passwordRules"
-          v-model="passwordVal"
-          placeholder="请输入密码"
-          type="password"
-        ></ValidateInput>
-      </div>
+
       <!-- 邮箱验证组件 -->
       <div class="mb-3">
         <label class="form-label">邮箱</label>
@@ -36,6 +27,16 @@
           v-model="emailVal"
           placeholder="请输入邮箱地址"
           type="text"
+        ></ValidateInput>
+      </div>
+      <!-- 密码验证组件 -->
+      <div class="mb-3">
+        <label class="form-label">密码</label>
+        <ValidateInput
+          :rules="passwordRules"
+          v-model="passwordVal"
+          placeholder="请输入密码"
+          type="password"
         ></ValidateInput>
       </div>
       <template #submit>
@@ -98,6 +99,7 @@ export default defineComponent({
     ];
     const passwordRules: RulesProp = [
       { type: "required", message: "密码不能为空" },
+      { type: "password", message: "密码不能低于6位数" },
     ];
 
     const emailRef = reactive({
@@ -105,39 +107,38 @@ export default defineComponent({
       error: false,
       message: "",
     });
-    const validateEmail = () => {
-      // 验证
-      if (emailRef.val.trim() === "") {
-        emailRef.error = true;
-        emailRef.message = "不能为空";
-      } else if (!emailReg.test(emailRef.val)) {
-        emailRef.error = true;
-        emailRef.message = "格式错误";
-      } else {
-        emailRef.error = false;
-      }
+    // const validateEmail = () => {
+    //   // 验证
+    //   if (emailRef.val.trim() === "") {
+    //     emailRef.error = true;
+    //     emailRef.message = "不能为空";
+    //   } else if (!emailReg.test(emailRef.val)) {
+    //     emailRef.error = true;
+    //     emailRef.message = "格式错误";
+    //   } else {
+    //     emailRef.error = false;
+    //   }
+    // };
+    const onFormSubmit = (result: boolean) => {
+      console.log("接受的值", result);
     };
-    const onFormSubmit = (result: boolean)=>{
-      console.log('接受的值',result);
-      
-    }
     return {
       list: testData,
       currentUser,
       emailRef,
-      validateEmail,
+      // validateEmail,
       emailRules,
       passwordRules,
       emailVal,
       passwordVal,
-      onFormSubmit
+      onFormSubmit,
     };
   },
   components: {
     // ColumnList,
     GlobalHeader,
     ValidateInput,
-    ValidateForm
+    ValidateForm,
   },
 });
 </script>

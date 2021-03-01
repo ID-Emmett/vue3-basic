@@ -19,7 +19,8 @@
 import { defineComponent, reactive, PropType } from "vue";
 const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 interface RuleProp {
-  type: "required" | "email";
+  // required为所有条件中必须存在的作用是判断是否为空,再判断具体指定的条件
+  type: "required" | "email" | "password";
   message: string;
 }
 export type RulesProp = RuleProp[];
@@ -47,7 +48,11 @@ export default defineComponent({
     // input失去焦点时将父组件传递的props数据作为类型与提示信息,
     const validateInput = () => {
       if (props.rules) {
+        // every()方法用于检测数组所有元素是否都符合指定条件 有一个不满足返回false
         const allPassed = props.rules.every((rule) => {
+          // every形参为item每一项
+          // console.log(rule);
+
           let passed = true;
           inputRef.message = rule.message;
           switch (rule.type) {
@@ -57,6 +62,9 @@ export default defineComponent({
               break;
             case "email":
               passed = emailReg.test(inputRef.val);
+              break;
+            case "password":
+              passed = inputRef.val.length >= 6;
               break;
             default:
               break;
