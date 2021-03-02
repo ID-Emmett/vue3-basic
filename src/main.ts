@@ -1,32 +1,6 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "./views/Home.vue";
-import Login from "./views/Login.vue";
-import ColumnDetail from "./views/ColumnDetail.vue";
 import App from "./App.vue";
-
-const routerHistory = createWebHistory();
-const router = createRouter({
-  history: routerHistory,
-  routes: [
-    {
-      path: "/",
-      name: "home",
-      component: Home,
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: Login,
-    },
-    // 动态路由
-    {
-      path: "/column/:id",
-      name: "column",
-      component: ColumnDetail,
-    },
-  ],
-});
+import { router } from "./router";
 const app = createApp(App);
-app.use(router);
+app.use(router); //配置路由
 app.mount("#app");
