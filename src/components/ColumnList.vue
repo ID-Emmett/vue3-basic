@@ -12,7 +12,19 @@
           <p class="card-text text-left">
             {{ column.description }}
           </p>
-          <a href="#" class="btn btn-outline-primary">进入专栏</a>
+          <!-- 动态路由跳转两种方式 -->
+          <router-link
+            :to="`/column/${column.id}`"
+            href="#"
+            class="btn btn-outline-primary"
+            >进入专栏</router-link
+          >
+          <!-- <router-link
+            :to="{ name: 'column', params: {id:column.id} }"
+            href="#"
+            class="btn btn-outline-primary"
+            >进入专栏</router-link
+          > -->
         </div>
       </div>
     </div>

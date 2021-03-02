@@ -15,7 +15,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
+import { defineComponent, ref, watch } from "vue";
 // 自定义函数,点击区域外触发关闭
 import useClickOutside from "../hooks/useClickOutside";
 export default defineComponent({
