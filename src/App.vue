@@ -1,8 +1,7 @@
 <template>
   <div class="container">
     <GlobalHeader :user="currentUser" />
-    <!-- <router-view></router-view> -->
-     <router-view/>
+    <router-view />
     <footer class="text-center py-4 text-secondary bg-light mt-6">
       <small>
         <ul class="list-inline mb-0">
@@ -14,31 +13,6 @@
         </ul>
       </small>
     </footer>
-    <!-- 验证组件 -->
-    <!-- <ValidateForm @form-submit="onFormSubmit">
-      <div class="mb-3">
-        <label class="form-label">邮箱</label>
-        <ValidateInput
-          :rules="emailRules"
-          v-model="emailVal"
-          placeholder="请输入邮箱地址"
-          type="text"
-          ref='inputRef'
-        ></ValidateInput>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">密码</label>
-        <ValidateInput
-          :rules="passwordRules"
-          v-model="passwordVal"
-          placeholder="请输入密码"
-          type="password"
-        ></ValidateInput>
-      </div>
-      <template #submit>
-        <span class="btn btn-danger">Submit</span>
-      </template>
-    </ValidateForm> -->
   </div>
 </template>
 

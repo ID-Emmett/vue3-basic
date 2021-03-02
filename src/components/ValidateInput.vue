@@ -17,7 +17,7 @@
 <script lang='ts'>
 // 表单验证
 import { defineComponent, reactive, PropType, onMounted } from "vue";
-import {emitter} from './ValidateForm.vue'
+import { emitter } from "./ValidateForm.vue";
 const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 interface RuleProp {
   // required为所有条件中必须存在的作用是判断是否为空,再判断具体指定的条件
@@ -73,13 +73,13 @@ export default defineComponent({
           return passed;
         });
         inputRef.error = !allPassed;
-        return allPassed
+        return allPassed;
       }
-      return true
+      return true;
     };
-    onMounted(()=>{
-      emitter.emit('form-item-created',validateInput)
-    })
+    onMounted(() => {
+      emitter.emit("form-item-created", validateInput);
+    });
     return {
       inputRef,
       validateInput,
